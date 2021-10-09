@@ -14,6 +14,7 @@ class QFont extends QmlWeb.QObject {
       pixelSize: { type: "int", initialValue: 13 },
       pointSize: { type: "real", initialValue: 10 },
       strikeout: "bool",
+      styleName: "string",
       underline: "bool",
       weight: { type: "enum", initialValue: Font.Normal },
       wordSpacing: "real"
@@ -29,6 +30,7 @@ class QFont extends QmlWeb.QObject {
     this.pixelSizeChanged.connect(this, this.$onPixelSizeChanged);
     this.pointSizeChanged.connect(this, this.$onPointSizeChanged);
     this.strikeoutChanged.connect(this, this.$onStrikeoutChanged);
+    this.styleNameChanged.connect(this, this.$onStyleNameChanged);
     this.underlineChanged.connect(this, this.$onUnderlineChanged);
     this.weightChanged.connect(this, this.$onWidthChanged);
     this.wordSpacingChanged.connect(this, this.$onWordSpacingChanged);
@@ -81,6 +83,10 @@ class QFont extends QmlWeb.QObject {
       : this.$parent.font.underline
         ? "underline"
         : "none";
+    this.$parent.$Component.completed();
+  }
+  $onStyleNameChanged(newVal) {
+    this.styleName = newVal;
     this.$parent.$Component.completed();
   }
   $onUnderlineChanged(newVal) {
